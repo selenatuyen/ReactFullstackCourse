@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Total = ({parts}) => {
+const Total = ({course}) => {
     let count = 0;
-    parts.map((part) => count += part.exercises);
+    course.parts.map((part) => count += part.exercises);
     return(
         <div>
             <p>Total number of exercises {count}</p>
