@@ -16,7 +16,11 @@ const Statistics = ({totalCount, good, bad, neutral}) => {
     )
   }
   else{
-    return <div></div>
+    return (
+      <div>
+        <p>No feedback given </p>
+      </div>
+    )
   }
 };
 
