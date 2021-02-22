@@ -6,12 +6,16 @@ const Statistics = ({totalCount, good, bad, neutral}) => {
     return (
       <>
         <h1>Statistics</h1>
-        <Statistic text="Good" value={good}></Statistic>
-        <Statistic text="Neutral" value={neutral}></Statistic>
-        <Statistic text="Bad" value={bad}></Statistic>
-        <Statistic text="All" value={totalCount}></Statistic>
-        <Statistic text="Average" value={(good + (bad*-1))/(totalCount)}></Statistic>
-        <Statistic text="Positive" value={(good/totalCount) * 100}></Statistic>
+        <table>
+          <tbody>
+            <Statistic text="Good" value={good}></Statistic>
+            <Statistic text="Neutral" value={neutral}></Statistic>
+            <Statistic text="Bad" value={bad}></Statistic>
+            <Statistic text="All" value={totalCount}></Statistic>
+            <Statistic text="Average" value={(good + (bad*-1))/(totalCount)}></Statistic>
+            <Statistic text="Positive" value={(good/totalCount) * 100}></Statistic>
+          </tbody>
+        </table>
       </>
     )
   }
@@ -26,7 +30,12 @@ const Statistics = ({totalCount, good, bad, neutral}) => {
 };
 
 const Statistic = ({text, value}) => {
-  return <p>{text}: {value}</p>
+  return( 
+    <tr>
+      <td>{text}</td>
+      <td>{value}</td>
+    </tr>
+  )
 
 }
 
