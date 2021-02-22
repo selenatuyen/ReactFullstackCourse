@@ -4,25 +4,35 @@ import ReactDOM from 'react-dom'
 const Statistics = ({totalCount, good, bad, neutral}) => {
   if(totalCount > 0){
     return (
-      <div>
+      <>
         <h1>Statistics</h1>
-        <p>Good: {good}</p>
-        <p>Neutral: {neutral}</p>
-        <p>Bad: {bad}</p>
-        <p>All: {good + neutral + bad}</p>
-        <p>Average: {(good + (bad*-1))/(totalCount)}</p>
-        <p>Positive: {(good/totalCount) * 100}%</p>
-      </div>
+        <Statistic text="Good" value={good}></Statistic>
+        <Statistic text="Neutral" value={neutral}></Statistic>
+        <Statistic text="Bad" value={bad}></Statistic>
+        <Statistic text="All" value={totalCount}></Statistic>
+        <Statistic text="Average" value={(good + (bad*-1))/(totalCount)}></Statistic>
+        <Statistic text="Positive" value={(good/totalCount) * 100}></Statistic>
+      </>
     )
   }
   else{
     return (
-      <div>
+      <>
+        <h1>Statistics</h1>
         <p>No feedback given </p>
-      </div>
+      </>
     )
   }
 };
+
+const Statistic = ({text, value}) => {
+  return <p>{text}: {value}</p>
+
+}
+
+const Button = ({text, handleClick}) =>{
+  return <button onClick={handleClick}>{text}</button>
+}
 
 const App = () => {
   // save clicks of each button to its own state
@@ -30,12 +40,24 @@ const App = () => {
   const [neutral, setNeutral] = useState(0)
   const [bad, setBad] = useState(0)
 
+  const handleGoodClick = () =>{
+    setGood(good + 1);
+  }
+
+  const handleNeutralClick = () =>{
+    setNeutral(neutral + 1);
+  }
+
+  const handleBadClick = () =>{
+    setBad(bad + 1);
+  }
+
   return (
     <div>
       <h1>Give Feedback</h1>
-      <button onClick={() => setGood(good+1)}>Good</button>
-      <button onClick={() => setNeutral(neutral+1)}>Neutral</button>
-      <button onClick={() => setBad(bad+1)}>Bad</button>
+      <Button text="Good" handleClick={handleGoodClick}></Button>
+      <Button text="Neutral" handleClick={handleNeutralClick}></Button>
+      <Button text="Bad" handleClick={handleBadClick}></Button>
       <Statistics totalCount={good + bad + neutral} good={good} bad={bad} neutral={neutral}></Statistics>
     </div>
   )
