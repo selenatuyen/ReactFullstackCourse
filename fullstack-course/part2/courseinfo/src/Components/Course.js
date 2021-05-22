@@ -18,7 +18,7 @@ const Content = ({parts}) => {
 
 const Total = ({parts}) =>{
     let total = parts.reduce((sum, part) => {return sum + part.exercises}, 0);
-    return <p>Total of {total} exercises</p>
+    return <b>Total of {total} exercises</b>
 };
 
 
